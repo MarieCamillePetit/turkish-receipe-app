@@ -5,9 +5,10 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [NavigationComponent],
+  declarations: [NavigationComponent, NotFoundComponent],
   imports: [
     CommonModule,
     LayoutModule,

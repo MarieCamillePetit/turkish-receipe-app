@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
     path: 'receipes',
     loadChildren: () =>
       import('./receipe/receipe.module').then((m) => m.ReceipeModule),
+  },
+  {
+    path: '**', // les ** signifient tout le reste des urls
+    component: NotFoundComponent,
   },
 ];
 @NgModule({
