@@ -1,0 +1,16 @@
+.clickable {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+}
+
+.container .btn-holder {
+  justify-content: flex-end;
+  display: flex;
+  padding: 1%;
+}

@@ -1,0 +1,65 @@
+<div class="container">
+    <h2>Liste des recettes</h2>
+    <div class="flex-grow-1 p-1">
+
+        <!-- async permet de mettre un observable et attendre les données avant l'affichage -->
+        <table mat-table [dataSource]="receipes$ | async" class="mat-elevation-z8">
+
+            <!-- firstName Column -->
+            <ng-container matColumnDef="receipeName">
+                <th mat-header-cell *matHeaderCellDef> Nom </th>
+                <td mat-cell *matCellDef="let element"> {{element.receipeName}} </td>
+            </ng-container>
+
+            <!-- lastName Column -->
+            <ng-container matColumnDef="descriptionReceipe">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.descriptionReceipe}} </td>
+            </ng-container>
+
+            <!-- class Column -->
+            <ng-container matColumnDef="time">
+                <th mat-header-cell *matHeaderCellDef> Temps </th>
+                <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+            </ng-container>
+
+            <!-- email Column -->
+            <ng-container matColumnDef="level">
+                <th mat-header-cell *matHeaderCellDef> Level </th>
+                <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+            </ng-container>
+
+            <!-- email Column -->
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> category </th>
+                <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+            </ng-container>
+
+
+            <!-- update Column -->
+            <ng-container matColumnDef="update">
+                <th mat-header-cell *matHeaderCellDef> Update </th>
+                <td mat-cell *matCellDef="let element" (click)="openReceipeForm(element); $event.stopPropagation();">
+                    <mat-icon>edit</mat-icon>
+                </td>
+            </ng-container>
+
+            <!-- delete Column -->
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef> Supprimer </th>
+                <td mat-cell *matCellDef="let element" (click)="delete(element.id); $event.stopPropagation();">
+                    <mat-icon>delete</mat-icon>
+                </td>
+            </ng-container>
+
+            <!-- header = title des colonnes -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <!-- Row = ligne // chaque ligne contient le nombre de colonne définie -->
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showReceipeDetails(row.id)"></tr>
+        </table>
+
+    </div>
+    <!-- <div class="btn-holder">
+        <button mat-fab color="warn" (click)="openStudentForm()"><mat-icon>add</mat-icon></button>
+    </div> -->
+</div>

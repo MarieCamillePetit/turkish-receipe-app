@@ -1,0 +1,50 @@
+<p>receipe-form works!</p>
+
+{{data | json}}
+
+<h2 mat-dialog-title>{{title}}</h2>
+
+<form [formGroup]="receipeForm" (ngSubmit)="onSubmit()">
+    <div class="form">
+        <mat-form-field appearance="outline">
+            <mat-label>identifiant</mat-label>
+            <input matInput formControlName="id" readonly />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input matInput formControlName="receipeName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>descirption</mat-label>
+            <input matInput formControlName="descriptionReceipe" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Level</mat-label>
+            <mat-select formControlName="level">
+                <mat-option *ngFor="let level of levels" [value]="level">
+                    {{level}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>time</mat-label>
+            <input matInput formControlName="time" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <input matInput formControlName="category" />
+        </mat-form-field>
+
+    </div>
+
+    <mat-dialog-actions align="end">
+        <button mat-button type="button" mat-dialog-close>Annuler</button>
+        <button mat-raised-button type="submit" cdkFocusInitial color="warn"
+            [disabled]="!receipeForm.valid || !receipeForm.dirty">{{submitBtnName}}</button>
+    </mat-dialog-actions>
+</form>

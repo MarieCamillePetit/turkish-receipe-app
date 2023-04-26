@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+    <div matSubheader class="notification-category">
+        <div class="notification-category-header">
+            <mat-icon class="icon-error" *ngIf="isError">error</mat-icon>
+            <mat-icon class="icon-warning" *ngIf="isWarning">warning</mat-icon>
+            <mat-icon class="icon-success" *ngIf="isSuccess">check_circle</mat-icon>
+            <mat-icon class="icon-information" *ngIf="isInformation">info</mat-icon>
+            <span class="categoryName">
+                <ng-container *ngIf="loadingSpinner">
+                    <mat-spinner class="spinner"></mat-spinner>
+                </ng-container>
+                {{ data.message }}
+            </span>
+        </div>
+    </div>
+
+    <div>
+        <span> </span>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <ng-container *ngIf="data.yesButtonVisible">
+        <button #yesButton mat-raised-button [mat-dialog-close]="true" id="yesButton">
+            {{ data.yesButtonLabel }}
+        </button>
+    </ng-container>
+
+    <ng-container *ngIf="data.noButtonVisible">
+        <button #noButton mat-raised-button [mat-dialog-close]="false" id="noButton">
+            {{ data.noButtonLabel }}
+        </button>
+    </ng-container>
+
+    <ng-container *ngIf="data.cancelButtonVisible">
+        <button #cancelButton mat-raised-button mat-dialog-close id="cancelButton">
+            {{ data.cancelButtonLabel }}
+        </button>
+    </ng-container>
+</mat-dialog-actions>

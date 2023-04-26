@@ -1,0 +1,43 @@
+.icon-error {
+  color: #d50000;
+}
+
+.icon-warning {
+  color: #ffab00;
+}
+
+.icon-success {
+  color: #4caf50;
+}
+
+.icon-information {
+  color: #06a;
+}
+
+.notification-category {
+  padding: 16px 16px 8px 0;
+
+  .categoryName {
+    padding-right: 4px;
+
+    .spinner {
+      display: block;
+      margin-left: 50%;
+      margin-right: 50%;
+    }
+  }
+
+  .notification-category-header {
+    position: relative;
+    align-items: center;
+    display: flex;
+
+    mat-icon {
+      font-size: 36px;
+      padding-right: 8px;
+      height: 36px;
+      width: 36px;
+    }
+  }
+}
+
