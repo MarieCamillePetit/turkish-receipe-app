@@ -17,6 +17,11 @@ const routes: Routes = [
     path: '**', // les ** signifient tout le reste des urls
     component: NotFoundComponent,
   },
+  {
+    path: 'categories',
+    loadChildren: () =>
+      import('./category/category.module').then((m) => m.CategoryModule),
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
