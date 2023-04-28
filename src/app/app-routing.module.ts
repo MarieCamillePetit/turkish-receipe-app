@@ -13,10 +13,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./receipe/receipe.module').then((m) => m.ReceipeModule),
   },
-  {
-    path: '**', // les ** signifient tout le reste des urls
-    component: NotFoundComponent,
-  },
+  // {
+  //   path: '**', // les ** signifient tout le reste des urls
+  //   component: NotFoundComponent,
+  // },
   {
     path: 'categories',
     loadChildren: () =>
