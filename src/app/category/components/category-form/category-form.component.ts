@@ -1,45 +1,40 @@
-import { Component, Inject, OnDestroy } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Receipe } from '../../models/receipe';
+import { Component, Inject } from '@angular/core';
+import { Category } from '../../models/category';
 import { Validators, FormBuilder } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject, takeUntil } from 'rxjs';
-import { ReceipeService } from '../../services/receipe.service';
+import { CategoryService } from '../../services/category.service';
 
-export interface ReceipeFormData {
+export interface CategoryFormData {
   isCreateForm: boolean;
-  receipe: Receipe;
+  category: Category;
 }
 
 @Component({
-  selector: 'app-receipe-form',
-  templateUrl: './receipe-form.component.html',
-  styleUrls: ['./receipe-form.component.scss'],
+  selector: 'app-category-form',
+  templateUrl: './category-form.component.html',
+  styleUrls: ['./category-form.component.scss'],
 })
-export class ReceipeFormComponent implements OnDestroy {
+export class CategoryFormComponent {
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  levels: string[] = ['Débutant', 'Intermédiaire', 'Avancé'];
   categorys: string[] = ['Starter', 'Main course', 'Dessert'];
 
-  receipeForm = this.fb.group({
+  categoryForm = this.fb.group({
     id: [0, [Validators.required]],
-    receipeName: ['', [Validators.required]],
-    descriptionReceipe: ['', [Validators.required]],
-    time: ['', [Validators.required]],
-    level: ['', [Validators.required]],
     category: ['', [Validators.required]],
   });
 
   constructor(
-    public dialogRef: MatDialogRef<ReceipeFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ReceipeFormData,
+    public dialogRef: MatDialogRef<CategoryFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: CategoryFormData,
     private fb: FormBuilder,
-    private receipeService: ReceipeService,
+    private categoryService: CategoryService,
     private _snackBar: MatSnackBar
   ) {
     if (!data.isCreateForm) {
-      this.setReceipeForm(data.receipe);
+      this.setCategoryForm(data.category);
     }
   }
 
@@ -48,14 +43,10 @@ export class ReceipeFormComponent implements OnDestroy {
     this.destroy$.complete();
   }
 
-  setReceipeForm(receipe: Receipe) {
-    this.receipeForm.setValue({
-      id: receipe.id,
-      receipeName: receipe.receipeName,
-      descriptionReceipe: receipe.descriptionReceipe,
-      time: receipe.time,
-      level: receipe.level,
-      category: receipe.category,
+  setCategoryForm(category: Category) {
+    this.categoryForm.setValue({
+      id: category.id,
+      category: category.category,
     });
   }
 
@@ -74,11 +65,11 @@ export class ReceipeFormComponent implements OnDestroy {
   }
 
   onSubmit() {
-    if (this.receipeForm.valid) {
+    if (this.categoryForm.valid) {
       if (this.data.isCreateForm) {
-        this.receipeForm.value.id = Date.now() + Math.random();
-        this.receipeService
-          .create(this.receipeForm.value as Receipe)
+        this.categoryForm.value.id = Date.now() + Math.random();
+        this.categoryService
+          .create(this.categoryForm.value as Category)
           .pipe(takeUntil(this.destroy$))
           .subscribe((result) => {
             this._snackBar.open(result, '', {
@@ -89,8 +80,8 @@ export class ReceipeFormComponent implements OnDestroy {
             this.dialogRef.close(true);
           });
       } else {
-        this.receipeService
-          .update(this.receipeForm.value as Receipe)
+        this.categoryService
+          .update(this.categoryForm.value as Category)
           .pipe(takeUntil(this.destroy$))
           .subscribe((result) => {
             this._snackBar.open(result, '', {

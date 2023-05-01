@@ -17,7 +17,7 @@ export class CategoryListComponent {
   categories$: Observable<Category[]>;
 
   //Ajouter la suite dans receipe-list.componenent.ts
-  displayedColumns: string[] = ['id', 'category'];
+  displayedColumns: string[] = ['id', 'category', 'update', 'delete'];
 
   constructor(
     private categoryService: CategoryService,
@@ -39,8 +39,8 @@ export class CategoryListComponent {
     this.categories$ = this.categoryService.get();
   }
 
-  openStudentForm(categorie?: Category) {
-    console.log('afficher la pop up de mise à jour', categorie);
+  openCategoryForm(categories$?: Category) {
+    console.log('afficher la pop up de mise à jour', categories$);
   }
 
   delete(id: number) {
