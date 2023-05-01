@@ -2,6 +2,7 @@
 
 {{data | json}}
 
+
 <h2 mat-dialog-title>{{title}}</h2>
 
 <form [formGroup]="receipeForm" (ngSubmit)="onSubmit()">
@@ -38,8 +39,8 @@
         <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
             <mat-select formControlName="category">
-                <mat-option *ngFor="let category of categorys" [value]="category">
-                    {{category}}
+                <mat-option *ngFor="let category of categories$| async" [value]="category.category">
+                    {{category.category}}
                 </mat-option>
             </mat-select>
         </mat-form-field>

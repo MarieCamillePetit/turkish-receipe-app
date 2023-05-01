@@ -3,8 +3,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Receipe } from '../../models/receipe';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { ReceipeService } from '../../services/receipe.service';
+import { Category } from 'src/app/category/models/category';
+import { CategoryService } from 'src/app/category/services/category.service';
 
 export interface ReceipeFormData {
   isCreateForm: boolean;
@@ -18,9 +20,9 @@ export interface ReceipeFormData {
 })
 export class ReceipeFormComponent implements OnDestroy {
   private destroy$: Subject<boolean> = new Subject<boolean>();
+  categories$: Observable<Category[]>;
 
   levels: string[] = ['Débutant', 'Intermédiaire', 'Avancé'];
-  categorys: string[] = ['Starter', 'Main course', 'Dessert'];
 
   receipeForm = this.fb.group({
     id: [0, [Validators.required]],
@@ -36,11 +38,16 @@ export class ReceipeFormComponent implements OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: ReceipeFormData,
     private fb: FormBuilder,
     private receipeService: ReceipeService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private categoryService: CategoryService
   ) {
     if (!data.isCreateForm) {
       this.setReceipeForm(data.receipe);
     }
+  }
+
+  ngOnInit(): void {
+    this.categories$ = this.categoryService.get();
   }
 
   ngOnDestroy(): void {

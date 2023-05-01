@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { Category } from '../../models/category';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -16,7 +16,7 @@ export interface CategoryFormData {
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss'],
 })
-export class CategoryFormComponent {
+export class CategoryFormComponent implements OnDestroy {
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
   categorys: string[] = ['Starter', 'Main course', 'Dessert'];

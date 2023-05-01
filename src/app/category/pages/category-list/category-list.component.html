@@ -1,9 +1,6 @@
-<p>category-list works!</p>
-{{categories$ | async | json}}
-
 <div>
     <div *ngFor="let category of categories$ | async">
-        <a [routerLink]="['/categories', category.id]">{{category.category}}</a>
+        <h1>{{category.category}}</h1>
     </div>
 </div>
 
@@ -53,6 +50,6 @@
 
     </div>
     <div class="btn-holder">
-        <button mat-fab color="warn" (click)="openReceipeForm()"><mat-icon>add</mat-icon></button>
+        <button mat-fab color="warn" (click)="openCategoryForm()"><mat-icon>add</mat-icon></button>
     </div>
 </div>
