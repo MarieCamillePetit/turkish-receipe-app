@@ -18,7 +18,7 @@ export class CategoryListComponent {
   categories$: Observable<Category[]>;
 
   //Ajouter la suite dans receipe-list.componenent.ts
-  displayedColumns: string[] = ['id', 'category', 'update', 'delete'];
+  displayedColumns: string[] = ['id', 'category', 'delete'];
 
   constructor(
     private categoryService: CategoryService,

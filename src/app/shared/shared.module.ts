@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [GenericPopupComponent],
@@ -36,6 +37,7 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
     MatDialogModule,
     MatOptionModule,
     MatNativeDateModule,
+    MatCardModule,
   ],
 })
 export class SharedModule {}

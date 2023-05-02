@@ -1,7 +1,13 @@
 <button mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon> Retour</button>
 
-{{receipe$ | async | json}}
+<!-- {{receipe$ | async | json}} -->
 
+{{(receipe$ | async)?.receipeName}}
+{{(receipe$ | async)?.receipeImg}}
+{{(receipe$ | async)?.descriptionReceipe}}
+{{(receipe$ | async)?.time}}
+{{(receipe$ | async)?.level}}
 
-
-<!-- <app-receipe-card [selectedReceipe]="receipe$ | async" (received)="showReceivedValue($event)"></app-receipe-card> -->
+<iframe width="560" height="315" src='{{(receipe$ | async)?.receipeYtb}}' title="YouTube video player" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen></iframe>

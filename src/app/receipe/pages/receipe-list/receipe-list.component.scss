@@ -14,3 +14,62 @@
   display: flex;
   padding: 1%;
 }
+
+.example-card {
+  max-width: 400px;
+
+  img {
+    width: 500px;
+    height: 400px;
+  }
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+
+  .mat-mdc-card {
+    min-width: 500px;
+
+    &:hover {
+      box-shadow: 0 0 10px 0 rgba(224, 1, 1, 0.416);
+    }
+
+    .mat-mdc-card-header {
+      justify-content: center;
+    }
+
+    .mdc-card_actions {
+      justify-content: center;
+    }
+  }
+}
+
+.delete-btn {
+  &:hover {
+    color: red;
+  }
+}
+
+.edit-btn {
+  &:hover {
+    color: lightblue;
+  }
+}
+
+.mdc-card__actions {
+  display: flex;
+  justify-content: center;
+
+  a {
+    margin: 1rem;
+  }
+}

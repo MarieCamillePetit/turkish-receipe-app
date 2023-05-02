@@ -30,6 +30,8 @@ export class ReceipeFormComponent implements OnDestroy {
     descriptionReceipe: ['', [Validators.required]],
     time: ['', [Validators.required]],
     level: ['', [Validators.required]],
+    receipeYtb: ['', [Validators.required]],
+    receipeImg: ['', [Validators.required]],
     category: ['', [Validators.required]],
   });
 
@@ -62,6 +64,8 @@ export class ReceipeFormComponent implements OnDestroy {
       descriptionReceipe: receipe.descriptionReceipe,
       time: receipe.time,
       level: receipe.level,
+      receipeYtb: receipe.receipeYtb,
+      receipeImg: receipe.receipeImg,
       category: receipe.category,
     });
   }

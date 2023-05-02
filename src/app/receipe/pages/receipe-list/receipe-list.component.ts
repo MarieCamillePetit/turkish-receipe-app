@@ -48,10 +48,6 @@ export class ReceipeListComponent implements OnInit {
     this.receipes$ = this.receipeService.get();
   }
 
-  openStudentForm(receipe?: Receipe) {
-    console.log('afficher la pop up de mise à jour', receipe);
-  }
-
   delete(id: number) {
     const ref = this.dialog.open(GenericPopupComponent, {
       data: {

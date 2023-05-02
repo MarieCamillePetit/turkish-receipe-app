@@ -14,17 +14,19 @@ export class ReceipeDetailsComponent {
   receipeId: number;
   receipe$: Observable<Receipe>;
 
+  receipeName: Observable<Receipe>;
+
   //ActivatedRoute permet de récupérer les paramètres de l'URL
   constructor(
     private route: ActivatedRoute,
-    private studentService: ReceipeService,
+    private receipeService: ReceipeService,
     private location: Location
   ) {
     this.receipeId = +this.route.snapshot.paramMap.get('id');
   }
   ngOnInit(): void {
     if (this.receipeId) {
-      this.receipe$ = this.studentService.getById(this.receipeId);
+      this.receipe$ = this.receipeService.getById(this.receipeId);
     }
   }
 

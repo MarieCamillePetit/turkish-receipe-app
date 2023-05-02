@@ -25,15 +25,6 @@
             </ng-container>
 
 
-
-            <!-- update Column -->
-            <ng-container matColumnDef="update">
-                <th mat-header-cell *matHeaderCellDef> Update </th>
-                <td mat-cell *matCellDef="let element" (click)="openCategoryForm(element); $event.stopPropagation();">
-                    <mat-icon>edit</mat-icon>
-                </td>
-            </ng-container>
-
             <!-- delete Column -->
             <ng-container matColumnDef="delete">
                 <th mat-header-cell *matHeaderCellDef> Supprimer </th>

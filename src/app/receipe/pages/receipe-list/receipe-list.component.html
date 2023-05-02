@@ -1,65 +1,35 @@
-<div class="container">
-    <h2>Liste des recettes</h2>
-    <div class="flex-grow-1 p-1">
-
-        <!-- async permet de mettre un observable et attendre les données avant l'affichage -->
-        <table mat-table [dataSource]="receipes$ | async" class="mat-elevation-z8">
-
-            <!-- firstName Column -->
-            <ng-container matColumnDef="receipeName">
-                <th mat-header-cell *matHeaderCellDef> Nom </th>
-                <td mat-cell *matCellDef="let element"> {{element.receipeName}} </td>
-            </ng-container>
-
-            <!-- lastName Column -->
-            <ng-container matColumnDef="descriptionReceipe">
-                <th mat-header-cell *matHeaderCellDef> Description </th>
-                <td mat-cell *matCellDef="let element"> {{element.descriptionReceipe}} </td>
-            </ng-container>
-
-            <!-- class Column -->
-            <ng-container matColumnDef="time">
-                <th mat-header-cell *matHeaderCellDef> Temps </th>
-                <td mat-cell *matCellDef="let element"> {{element.time}} </td>
-            </ng-container>
-
-            <!-- email Column -->
-            <ng-container matColumnDef="level">
-                <th mat-header-cell *matHeaderCellDef> Level </th>
-                <td mat-cell *matCellDef="let element"> {{element.level}} </td>
-            </ng-container>
-
-            <!-- email Column -->
-            <ng-container matColumnDef="category">
-                <th mat-header-cell *matHeaderCellDef> category </th>
-                <td mat-cell *matCellDef="let element"> {{element.category.category}} </td>
-            </ng-container>
-
-
-            <!-- update Column -->
-            <ng-container matColumnDef="update">
-                <th mat-header-cell *matHeaderCellDef> Update </th>
-                <td mat-cell *matCellDef="let element" (click)="openReceipeForm(element); $event.stopPropagation();">
-                    <mat-icon>edit</mat-icon>
-                </td>
-            </ng-container>
-
-            <!-- delete Column -->
-            <ng-container matColumnDef="delete">
-                <th mat-header-cell *matHeaderCellDef> Supprimer </th>
-                <td mat-cell *matCellDef="let element" (click)="delete(element.id); $event.stopPropagation();">
-                    <mat-icon>delete</mat-icon>
-                </td>
-            </ng-container>
-
-            <!-- header = title des colonnes -->
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <!-- Row = ligne // chaque ligne contient le nombre de colonne définie -->
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showReceipeDetails(row.id)"></tr>
-        </table>
-
-    </div>
+<div style="display: flex; justify-content: space-between; margin: 1rem;">
+    <h1>Receipes</h1>
     <div class="btn-holder">
         <button mat-fab color="warn" (click)="openReceipeForm()"><mat-icon>add</mat-icon></button>
+    </div>
+</div>
+<div class="container">
+    <div class="card-container">
+        <div *ngFor="let receipe of receipes$ | async">
+            <mat-card class="example-card" (click)="showReceipeDetails(receipe.id)">
+                <mat-card-header>
+                    <mat-card-title> {{receipe.receipeName}} </mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src={{receipe.receipeImg}} alt="Photo de la recette">
+                <mat-card-content>
+                    <p>
+                        <b>Description :</b> {{receipe.descriptionReceipe}}
+                    </p>
+                    <p>
+                        <b>Time :</b> {{receipe.time}}
+                    </p>
+                    <p>
+                        <b>Level :</b> {{receipe.level}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <a (click)="openReceipeForm(receipe); $event.stopPropagation();">
+                        <mat-icon class="edit-btn">edit</mat-icon></a>
+                    <a (click)="delete(receipe.id); $event.stopPropagation();">
+                        <mat-icon class="delete-btn">delete</mat-icon></a>
+                </mat-card-actions>
+            </mat-card>
+        </div>
     </div>
 </div>

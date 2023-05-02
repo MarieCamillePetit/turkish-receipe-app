@@ -39,10 +39,20 @@
         <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
             <mat-select formControlName="category">
-                <mat-option *ngFor="let category of categories$| async" [value]="category.category">
+                <mat-option *ngFor="let category of categories$| async" [value]="category.id">
                     {{category.category}}
                 </mat-option>
             </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ytb</mat-label>
+            <input matInput formControlName="receipeYtb" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>img</mat-label>
+            <input matInput formControlName="receipeImg" />
         </mat-form-field>
 
     </div>
