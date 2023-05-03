@@ -1,0 +1,24 @@
+.clickable {
+    cursor: pointer;
+  }
+  
+  .displayTable{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+  
+    .displayTableCell{
+      .authBlock{
+        .formGroup{
+          .formControl{
+            margin-bottom: 20px;
+          }
+          .googleBtn{
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+  }

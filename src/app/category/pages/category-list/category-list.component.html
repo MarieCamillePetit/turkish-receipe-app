@@ -1,9 +1,3 @@
-<div>
-    <div *ngFor="let category of categories$ | async">
-        <h1>{{category.category}}</h1>
-    </div>
-</div>
-
 
 <div class="container">
     <h2>Liste des Categories</h2>
@@ -36,7 +30,7 @@
             <!-- header = title des colonnes -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <!-- Row = ligne // chaque ligne contient le nombre de colonne définie -->
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showReceipeDetails(row.id)"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showCategoryDetails(row.id)"></tr>
         </table>
 
     </div>

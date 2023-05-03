@@ -5,6 +5,12 @@
     <mat-nav-list>
       <a mat-list-item href="/receipes">Receipes</a>
       <a mat-list-item href="/categories">Categories</a>
+      <a mat-list-item *ngIf="!(afAuth.user | async)" href="/register-user">Inscription</a>
+      <a mat-list-item *ngIf="!(afAuth.user | async)" href="/sign-in">Connexion</a>
+      <div class="user-connected" *ngIf="authService.userData as user">
+        <a mat-list-item *ngIf="(afAuth.user | async)" href="/dashboard">{{(user.displayName) ? user.displayName : 'User'}}</a>
+        <a mat-list-item *ngIf="(afAuth.user | async)" (click)="authService.SignOut()">Déconnexion</a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

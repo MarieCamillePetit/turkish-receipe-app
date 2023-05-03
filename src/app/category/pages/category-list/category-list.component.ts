@@ -7,6 +7,7 @@ import { GenericPopupComponent } from 'src/app/shared/components/generic-popup/g
 import { CategoryService } from '../../services/category.service';
 import { Router } from '@angular/router';
 import { CategoryFormComponent } from '../../components/category-form/category-form.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-category-list',
@@ -24,7 +25,8 @@ export class CategoryListComponent {
     private categoryService: CategoryService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private auth: AngularFireAuth
   ) {}
 
   ngOnDestroy(): void {
@@ -41,6 +43,10 @@ export class CategoryListComponent {
   }
 
   openCategoryForm(category?: Category) {
+    this.auth.authState.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/sign-in']);
+      }else{
     const dialogRef = this.dialog.open(CategoryFormComponent, {
       height: '85%',
       width: '60%',
@@ -58,9 +64,15 @@ export class CategoryListComponent {
           this.fetchData();
         }
       });
+    }
+  });
   }
 
   delete(id: number) {
+    this.auth.authState.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/sign-in']);
+      }else{
     const ref = this.dialog.open(GenericPopupComponent, {
       data: {
         title: 'Confirmation de suppression',
@@ -92,31 +104,11 @@ export class CategoryListComponent {
             });
         }
       });
+    }
+  });
   }
 
-  openReceipeForm(category?: Category) {
-    console.log('afficher la pop up de mise à jour');
-    const dialogRef = this.dialog.open(CategoryFormComponent, {
-      height: '85%',
-      width: '60%',
-      data: {
-        isCreateForm: category ? false : true,
-        category: category ? category : undefined,
-      },
-    });
-
-    dialogRef
-      .afterClosed()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((result) => {
-        if (result) {
-          this.fetchData();
-        }
-      });
-  }
-
-  showReceipeDetails(CategoryId: number) {
-    console.log('afficher les détails de la catégorie', CategoryId);
-    // this.router.navigate(['/categories/' + CategoryId]);
+  showCategoryDetails(CategoryId: number) {
+    this.router.navigate(['/categories/' + CategoryId]);
   }
 }

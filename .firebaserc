@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "turkish-app-c8677": {
+      "hosting": {
+        "turkish-receipe-app": [
+          "turkish-app-c8677"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "turkish-app-c8677"
+  }
+}

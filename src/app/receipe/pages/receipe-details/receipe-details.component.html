@@ -1,13 +1,21 @@
 <button mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon> Retour</button>
 
-<!-- {{receipe$ | async | json}} -->
+<div class="container_details">
+    <div class="header_details">
+       <img src="{{(receipe$ | async)?.receipeImg}}" alt="Picture of the receipe">
+        <div class="title_description">
+            <h2>{{(receipe$ | async)?.receipeName}}</h2>
+            <p>{{(receipe$ | async)?.descriptionReceipe}}</p>
+            <a href="{{(receipe$ | async)?.receipeYtb}}">Video of this receipe</a>
+        </div> 
+    </div>
+    <div>
+        <ul>
+            <li><mat-icon>restaurant_menu</mat-icon>{{(receipe$ | async)?.category}}</li>
+            <li><mat-icon>auto_awesome</mat-icon>{{(receipe$ | async)?.level}}</li>
+            <li><mat-icon>timer</mat-icon>{{(receipe$ | async)?.time}}</li>
+        </ul>
+    </div>
 
-{{(receipe$ | async)?.receipeName}}
-{{(receipe$ | async)?.receipeImg}}
-{{(receipe$ | async)?.descriptionReceipe}}
-{{(receipe$ | async)?.time}}
-{{(receipe$ | async)?.level}}
 
-<iframe width="560" height="315" src='{{(receipe$ | async)?.receipeYtb}}' title="YouTube video player" frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen></iframe>
+    

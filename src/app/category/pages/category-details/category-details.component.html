@@ -1,1 +1,7 @@
-<p>category-details works!</p>
+
+<button class="back-btn" mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon>Back</button>
+
+<div class="center">
+  <p>id : {{ (categorie$ |async)?.id}}</p>
+  <p>Category : {{ (categorie$ |async)?.category}}</p>
+</div>

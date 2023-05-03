@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { GenericPopupComponent } from 'src/app/shared/components/generic-popup/generic-popup.component';
 import { ReceipeFormComponent } from '../../components/receipe-form/receipe-form.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-receipe-list',
@@ -32,7 +33,8 @@ export class ReceipeListComponent implements OnInit {
     private receipeService: ReceipeService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router, 
+    private auth: AngularFireAuth
   ) {}
 
   ngOnDestroy(): void {
@@ -49,17 +51,21 @@ export class ReceipeListComponent implements OnInit {
   }
 
   delete(id: number) {
+    this.auth.authState.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/sign-in']);
+      }else{
     const ref = this.dialog.open(GenericPopupComponent, {
       data: {
-        title: 'Confirmation de suppression',
-        message: 'êtes-vous sûr de vouloir supprimer cet étudiant ?',
+        title: 'Delete Confirmation',
+        message: 'Are you sure you want to delete this receipe ?',
         typeMessage: 'none',
         yesButtonVisible: true,
         noButtonVisible: true,
         cancelButtonVisible: false,
         defaultButton: 'No',
-        yesButtonLabel: 'Oui',
-        noButtonLabel: 'Non',
+        yesButtonLabel: 'Yes',
+        noButtonLabel: 'No',
       },
     });
 
@@ -80,9 +86,15 @@ export class ReceipeListComponent implements OnInit {
             });
         }
       });
+    }
+  });
   }
 
   openReceipeForm(receipe?: Receipe) {
+    this.auth.authState.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/sign-in']);
+      }else{
     const dialogRef = this.dialog.open(ReceipeFormComponent, {
       height: '85%',
       width: '60%',
@@ -100,6 +112,8 @@ export class ReceipeListComponent implements OnInit {
           this.fetchData();
         }
       });
+    }
+  }); 
   }
 
   showReceipeDetails(ReceipeId: number) {
