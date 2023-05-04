@@ -3,7 +3,7 @@
 <form [formGroup]="receipeForm" (ngSubmit)="onSubmit()">
     <div class="form">
         <mat-form-field appearance="outline">
-            <mat-label>identifiant</mat-label>
+            <mat-label>Id</mat-label>
             <input matInput formControlName="id" readonly />
         </mat-form-field>
 
@@ -53,7 +53,7 @@
     </div>
 
     <mat-dialog-actions align="end">
-        <button mat-button type="button" mat-dialog-close>Annuler</button>
+        <button mat-button type="button" mat-dialog-close>Cancel</button>
         <button mat-raised-button type="submit" cdkFocusInitial color="warn"
             [disabled]="!receipeForm.valid || !receipeForm.dirty">{{submitBtnName}}</button>
     </mat-dialog-actions>

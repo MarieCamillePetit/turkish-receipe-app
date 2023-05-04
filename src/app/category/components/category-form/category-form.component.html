@@ -3,12 +3,12 @@
 <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
     <div class="form">
         <mat-form-field appearance="outline">
-            <mat-label>id</mat-label>
+            <mat-label>Id</mat-label>
             <input matInput formControlName="id" readonly />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-            <mat-label>category</mat-label>
+            <mat-label>Category</mat-label>
             <input matInput formControlName="category" />
         </mat-form-field>
 
@@ -16,7 +16,7 @@
     </div>
 
     <mat-dialog-actions align="end">
-        <button mat-button type="button" mat-dialog-close>Annuler</button>
+        <button mat-button type="button" mat-dialog-close>Cancel</button>
         <button mat-raised-button type="submit" cdkFocusInitial color="warn"
             [disabled]="!categoryForm.valid || !categoryForm.dirty">{{submitBtnName}}</button>
     </mat-dialog-actions>

@@ -5,13 +5,17 @@
     <mat-nav-list>
       <a mat-list-item href="/receipes">Receipes</a>
       <a mat-list-item href="/categories">Categories</a>
-      <a mat-list-item *ngIf="!(afAuth.user | async)" href="/register-user">Inscription</a>
-      <a mat-list-item *ngIf="!(afAuth.user | async)" href="/sign-in">Connexion</a>
+      <a mat-list-item *ngIf="!(afAuth.user | async)" href="/register-user">Sign up</a>
+      <a mat-list-item *ngIf="!(afAuth.user | async)" href="/sign-in">Sign in</a>
       <div class="user-connected" *ngIf="authService.userData as user">
         <a mat-list-item *ngIf="(afAuth.user | async)" href="/dashboard">{{(user.displayName) ? user.displayName : 'User'}}</a>
-        <a mat-list-item *ngIf="(afAuth.user | async)" (click)="authService.SignOut()">Déconnexion</a>
+        <a mat-list-item *ngIf="(afAuth.user | async)" (click)="authService.SignOut()">Log out</a>
       </div>
     </mat-nav-list>
+      <div class="collab">
+      <p>Envie d'une boisson avec votre plat?</p>
+      <p>Visitez <a href="https://projet-boissons-app-cp.web.app/">Projet Boissons</a></p>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
