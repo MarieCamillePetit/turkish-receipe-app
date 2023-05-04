@@ -52,16 +52,16 @@ export class CategoryFormComponent implements OnDestroy {
 
   get title() {
     if (this.data.isCreateForm) {
-      return 'Formulaire de création';
+      return 'Create Category';
     }
-    return 'Formulaire de modification';
+    return 'Edit Category';
   }
 
   get submitBtnName() {
     if (this.data.isCreateForm) {
-      return 'Ajouter';
+      return 'Add';
     }
-    return 'Modifier';
+    return 'Edit';
   }
 
   onSubmit() {

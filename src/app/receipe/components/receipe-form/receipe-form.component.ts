@@ -22,7 +22,7 @@ export class ReceipeFormComponent implements OnDestroy {
   private destroy$: Subject<boolean> = new Subject<boolean>();
   categories$: Observable<Category[]>;
 
-  levels: string[] = ['Débutant', 'Intermédiaire', 'Avancé'];
+  levels: string[] = ['Easy', 'Medium', 'Hard'];
 
   receipeForm = this.fb.group({
     id: [0, [Validators.required]],
@@ -72,16 +72,16 @@ export class ReceipeFormComponent implements OnDestroy {
 
   get title() {
     if (this.data.isCreateForm) {
-      return 'Formulaire de création';
+      return 'Create Receipe';
     }
-    return 'Formulaire de modification';
+    return 'Edit Receipe';
   }
 
   get submitBtnName() {
     if (this.data.isCreateForm) {
-      return 'Ajouter';
+      return 'Add';
     }
-    return 'Modifier';
+    return 'Edit';
   }
 
   onSubmit() {
